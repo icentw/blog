@@ -1,0 +1,85 @@
+/*Table of Content*/
+
+/*
+1.Section Settings
+2.Section carousel
+*/
+/* Section Settings */
+
+html, body{
+    height: 100%;
+}
+
+.bg-alpha{
+    background: rgba(0, 0, 0, 0.5)
+}
+
+.border-short-bottom{
+    position: relative;
+    padding: 20px 0;
+    margin-bottom: 25px;
+}
+
+.border-short-bottom::after{
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 2px;
+    bottom: 0;
+    margin-left: -250px;
+    background: #595959;
+}
+/* Section carousel */
+.carousel,
+.carousel-inner,
+.carousel-item,
+.carousel-inner .active
+{
+    height: 100%;
+}
+
+.carousel-img{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-caption{
+    top: 40%;
+}
+
+.backscreen {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+
+/* Section Blog */
+.warpper-card-img{
+    padding: relative;
+    overflow: hidden;
+}
+
+.warpper-card-img::after {
+    content: '';
+    padding-top: 56.25%;
+    display: block;
+    height: 0;
+}
+
+.warpper-card-img img {
+    position: absolute;
+    top: 0;
+    transition: 1s;
+}
+
+/* .warpper-card-img img:hover {
+    transform: scale(1.2)
+} */
+
+.warpper-card-img img{
+    padding: absolute;
+    top: 0;
+    transition: 1s;
+
+}
