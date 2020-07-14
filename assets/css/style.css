@@ -4,6 +4,7 @@
 2. Section Carousel
 3. Section Blog
 4. Section Footer
+5. Section Navbar
 ________________________________________
 
 Colot
@@ -82,4 +83,10 @@ body {
   border-bottom: 2px solid;
   text-align: left;
   padding: 10px 0;
+}
+
+/* Section Navbar */
+#navbar {
+    padding: 25px;
+    transition: 0.5s;
 }
