@@ -71,6 +71,11 @@ body {
   transform: scale(1.2);
 }
 
+.btn-group-custom button{
+  margin-bottom: 0.5rem;
+  width: 100px;
+}
+
 /* Section Footer */
 .semi-footer {
   background-color: #04151f;
@@ -241,3 +246,5 @@ li.inverted > .timeline-card{
   white-space: nowrap;
   overflow: hidden;
 }
+
+/*  */
