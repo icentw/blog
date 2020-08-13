@@ -220,7 +220,10 @@ li.inverted > .timeline-card{
 
   .timeline-arrow{
     text-align: left;
-    left: 33px;
+    left: 0;
+  }
+  .timeline-arrow > i{
+    margin-left: 33px;
   }
 }
 
