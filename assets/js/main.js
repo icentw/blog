@@ -8,22 +8,6 @@ $(window).scroll(function() {
     }
 })
 
-// Section owl-carousel
-$(document).ready(function(){
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        nav:false,
-        dots:true,
-        responsive:{
-            0:{
-                items:1
-            },
-            600:{
-                items:3
-            },
-            1000:{
-                items:3
-            }
-        }
-    });
-});
+$('.to-top').click(function (){
+    $('html,body').animate({scrollTop: '0px'} ,300)
+})

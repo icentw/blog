@@ -8,6 +8,7 @@
 6. Section page-tittle
 7. Section Timeline
 8. Section Star
+9. Section On to top
 ________________________________________
 
 Colot
@@ -93,13 +94,6 @@ body {
   width: 100px;
 }
 
-.blog-image{
-  padding: 200px 0 120px 0;
-  text-align: center;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.5);
-}
-
 .blog-contemt{
   padding: 50px 100px;
   box-shadow: 0 0 10px #a5a5a5;
@@ -115,6 +109,11 @@ body {
   .blog-contemt{
     padding: 20px 50px;
   }
+}
+
+.owl-carousel .card-body {
+  height: 150px;
+  overflow: hidden;
 }
 /* Section Footer */
 .semi-footer {
@@ -139,14 +138,21 @@ body {
     transition: 0.5s;
 }
 
+@media (max-width: 480px){
+  .navbar-brand{
+  font-size: 0.8rem;
+  line-height: 2rem;
+}
+}
+
+
 
 /*Section page-tittle */
-.page-tittle{
-  position: relative;
-  display: block;
-  padding-top: 250px;
-  padding-bottom: 100px;
-  color: #ffffff;
+.page-image{
+  padding: 200px 0 120px 0;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -287,4 +293,22 @@ li.inverted > .timeline-card{
   overflow: hidden;
 }
 
-/*  */
+/* Section On to top */
+.to-top{
+  position: fixed;
+  bottom: 5%;
+  width: 40px;
+  height: 40px;
+  background: #705fff;;
+  color: white;
+  z-index: 9999;
+  border-radius: 50%;
+  font-size: 25px;
+  right: 2%;
+  cursor: pointer;
+  text-align: center;
+}
+.to-top:hover{
+  color: #fff;
+  background: #9900ff;;
+}
