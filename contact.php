@@ -14,44 +14,7 @@
   </head>
   <body>
     <!--section navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark bg-alpha">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="assets/image/logo.png" width="30" height="30" class="d-inline-block align-top" alt="logo"/>
-          Shop
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto text-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html"
-                >Home <span class="sr-only">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="blog.html">Blog</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <?php include_once('includes/navbar.php');?>
 
     <!-- section page-tittle -->
     <header data-jarallax='{"speed":0.4}' class="jarallax" style="background-image: url('https://images.unsplash.com/photo-1537498425277-c283d32ef9db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1357&q=80');">
@@ -170,18 +133,18 @@
           <h4>Menu</h4>
           <ul class="navbar-nav ml-auto text-center">
             <li class="nav-item">
-              <a class="nav-link" href="index.html"
+              <a class="nav-link" href="index.php"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="blog.html">Blog</a>
+              <a class="nav-link" href="blog.php">Blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.php">Contact</a>
             </li>
           </ul>
         </div>
