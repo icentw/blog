@@ -122,6 +122,10 @@ body {
 }
 
 .semi-footer a {
+  color: #a7a7a7;
+}
+
+.semi-footer li.active > a {
   color: #ffffff;
 }
 

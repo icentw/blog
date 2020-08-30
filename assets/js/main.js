@@ -8,6 +8,22 @@ $(window).scroll(function() {
     }
 })
 
+$('.jarallax').jarallax();
+
+
+//Check to see if the window is top if not then display button
+$(window).scroll(function(){
+    if ($(this).scrollTop() > 100) {
+        $('.to-top').fadeIn();
+    } else {
+        $('.to-top').fadeOut();
+    }
+});
+//Click event to scroll to top
 $('.to-top').click(function (){
     $('html,body').animate({scrollTop: '0px'} ,300)
+
+    
 })
+
+
