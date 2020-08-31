@@ -1,15 +1,37 @@
+<?php 
+    require_once ('php/connect.php');
+    $sql = "SELECT * FROM articles where id = '".$_GET['id']."' ";
+    $result = $conn->query($sql) or die ($conn->error);
+    if($result-> num_rows >0){
+      $row = $result->fetch_assoc();
+    }
+    else{
+      header( 'location: blog.php' );
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- SEO -->
+    <meta name="title" content="HTML คืออะไร">
+    <meta name="description" content="เขียนเว็บไซต์">
+    <meta name="keywords" content="เขียนเว็บไซต์,html,css,javascript">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css"/>
     <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
-    <title>Blog Detail</title>
+    <title><?php echo$row['subject']?></title>
     
   </head>
   <body>
@@ -19,8 +41,8 @@
     <!-- section page-tittle -->
     <header data-speed="0.5" class="jarallax" style="background-image: url('https://images.unsplash.com/photo-1537498425277-c283d32ef9db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1357&q=80');">
         <div class="page-image">
-            <h1 class="display-4 font-weight-bold">Website</h1>
-            <p class="lead">Language</p>
+            <h1 class="display-4 font-weight-bold"><?php echo$row['subject']?></h1>
+            <p class="lead"><?php echo$row['sub_title']?></p>
         </div>
     </header>
 
@@ -29,37 +51,12 @@
     
         <div class="row">
             <div class="col-12">
-              <h2><strong>HTML คืออะไร</strong></h2>
-
-                <p><strong>HTML5</strong>&nbsp;คือ ภาษามาร์กอัป ที่ใช้สำหรับเขียน website &nbsp;ซึ่ง&nbsp;HTML5&nbsp;นี้เป็นภาษาที่ถูกพัฒนาต่อมาจากภาษา HTML และพัฒนาขึ้นมาโดย WHATWG (The Web Hypertext Application Technology Working Group) โดยได้มีการปรับเพิ่ม Feature หลายๆอย่างเข้ามาเพื่อให้ผู้พัฒนาสามารถใช้งานได้ง่ายมากยิ่งขึ้น</p>
-                
-                <h2>ข้อดีของ HTML5</h2>
-                
-                <ol>
-                    <li>เว็บไซต์ที่สร้างจากภาษา&nbsp;<strong>HTML5&nbsp;</strong>สามารถแสดงผลได้กับทุก web browser&nbsp;</li>
-                    <li><strong>HTML5&nbsp;</strong>จะช่วยลดการใช้พวกปลั๊กอินพิเศษอย่างพวก Adobe Flash, Microsoft Silverlight, Apache Pivot สนับสนุน วิดีโอ และ องค์ประกอบเสียง รวมทั้ง สื่อมัลติมีเดียต่างๆมากขึ้น โดยไม่ต้องใช้ Flash</li>
-                    <li>มีการจัดการข้อผิดพลาดที่ดีขึ้น</li>
-                    <li>สคริปต์ใหม่ ที่จะมาแทนที่สคริปต์เดิม (เขียนโค้ดสั้นลง)</li>
-                    <li><strong>HTML5&nbsp;</strong>มีความเป็นอิสระสูง (คล้ายๆ XML )</li>
-                    <li><strong>HTML5&nbsp;</strong>ทำงานควบคู่กับ CSS3 ได้ดี ช่วยให้สามารถเพิ่มลูกเล่นต่างๆบนเว็บไซต์ได้สวยงามมากยิ่งขึ้น (CSS คือส่วนแสดงผล ที่นักออกแบบสามารถกำหนดสีสัน ตำแหน่ง ลักษณะเวลานำเมาส์ไปแหย่แล้วมีกระต่ายโผล่ออกมาจากโพรง หรือจับก้อนวัตถุในหน้าเว็บฯ ให้ชิดซ้ายชิดขวา ส่วน CSS3 คือเวอร์ชั่นที่ 3 ของ CSS )</li>
-                </ol>
-                
-                <h2>Features ใหม่ๆ ของ HTML5</h2>
-                
-                <ol>
-                    <li>Semantic Markup : การเพิ่ม Element ที่ อ่านง่ายมากขึ้น และช่วยให้ เราทำ SEO ได้มีประสิทธิภาพมากยิ่งขึ้น</li>
-                    <li>Form Enhancements : เพิ่มความสามารถของ Form ต่างๆ ไม่ว่าจะเป็น Input type, Attribute หรือ แม้แต่ Element</li>
-                    <li>Audio / Video: รองรับการอ่านไฟล์เสียง และ วีดีโอ โดยไม่จำเป็นต้องใช้ Embed Code ของ Third Party</li>
-                    <li>Canvas : ใช้ในการวาดรูป โดยจำเป็นต้องใช้ Javascriptช่วย</li>
-                    <li>ContentEditable : สามารถแก้ไข Content ได้โดยตรงผ่านทางหน้าเว็บ</li>
-                    <li>Drag and Drop : ลากวางObject ได้ เพื่อเพิ่มการ ตอบสนองระหว่างระบบกับผู้ใช้</li>
-                    <li>Persistent Data Storage : มีการจัดการที่ดีขึ้น โดยเก็บข้อมูลลงบนเครื่องของผู้ใช้&nbsp;</li>
-                </ol>
+              <?php echo$row['detail']?>
             </div>
         </div>
         <div class="col-12">
           <hr>
-          <p class="text-right text-muted">14 Feb 2020</p>
+          <p class="text-right text-muted"><?php  echo date_format(new datetime ($row['update_at']),"j F Y");?></p>
         </div>
         <div class="col-12">
           <div class="owl-carousel owl-theme">

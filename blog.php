@@ -56,7 +56,7 @@
       <?php while($row = $result->fetch_assoc()) { ?>
         <section class="col-12 col-sm-6 col-md-4 p-2">
             <div class="card h-100">
-              <a href="blog-detail.php?id= <?php echo $row['id'] ?>" class="warpper-card-img">
+              <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="warpper-card-img">
                 <img
                   class="card-img-top"
                   src=<?php echo $row['image'] ?>
@@ -70,7 +70,7 @@
                 </p>
               </div>
               <div class="p-3">
-                <a href="blog-detail.php?id= <?php echo $row['id'] ?>" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
               </div>
             </div>
         </section>
