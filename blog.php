@@ -1,10 +1,19 @@
 <?php
   require_once('php/connect.php');
 
-  $sql = "SELECT * FROM articles";
-  $result = $conn->query($sql) or die($conn->error);
-  
-  // print_r($result);
+  $tag = isset($_GET['tag']) ? $_GET['tag'] : $tag = 'all';
+  $sql = " SELECT * FROM `articles` WHERE `tag` LIKE '%".$tag."%' AND `status` = 'true'";
+  $result = $conn->query($sql);
+  if($conn->error){
+    header('Location: blog.php');
+  }
+            // if isset($_GET['tag']){
+            //   $tag = $_GET['tag'];
+            // }
+            // else{
+            //   $tag = 'all';
+            // }
+            // $result = $conn->query($sql) or die($conn->error);
 ?>
 
 <!DOCTYPE html>
@@ -38,46 +47,61 @@
       <div class="row pb-4">
         <div class="col-12 text-center">
             <div class="btn-group-custom">
-                <a href="blog.html?tag=all">
-                    <button class="btn btn-primary active">ทั้งหมด</button>
+                <a href="blog.php?tag=all">
+                    <button class="btn btn-primary <?php echo $tag == 'all' ? 'active' : ''; ?>">ทั้งหมด</button>
                 </a>
-                <a href="blog.html?tag=html">
-                    <button class="btn btn-primary">HTML</button>
+                <a href="blog.php?tag=html">
+                    <button class="btn btn-primary <?php echo $tag == 'html' ? 'active' : ''; ?> ">HTML</button>
                 </a>
-                <button class="btn btn-primary">CSS</button>
-                <button class="btn btn-primary">Javascript</button>
-                <button class="btn btn-primary">PHP</button>
-                <button class="btn btn-primary">MySQL</button>
+                <a href="blog.php?tag=css">
+                    <button class="btn btn-primary <?php echo $tag == 'css' ? 'active' : ''; ?>">CSS</button>
+                </a>
+                <a href="blog.php?tag=javascript">
+                    <button class="btn btn-primary <?php echo $tag == 'javascript' ? 'active' : ''; ?>">JS</button>
+                </a>
+                <a href="blog.php?tag=php">
+                    <button class="btn btn-primary <?php echo $tag == 'php' ? 'active' : ''; ?>">PHP</button>
+                </a>
+                <a href="blog.php?tag=sql">
+                    <button class="btn btn-primary <?php echo $tag == 'sql' ? 'active' : ''; ?>">SQL</button>
+                </a>
             </div>
         </div>
      </div>
 
       <div class="row pd-4">
-      <?php while($row = $result->fetch_assoc()) { ?>
+      <?php 
+      if($result->num_rows){
+        while($row = $result->fetch_assoc()) {
+      ?>
         <section class="col-12 col-sm-6 col-md-4 p-2">
             <div class="card h-100">
               <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="warpper-card-img">
-                <img
-                  class="card-img-top"
-                  src=<?php echo $row['image'] ?>
-                  alt="Coding"
-                />
+                <img class="card-img-top" src=<?php echo $base_path_blog.$row['image'] ?> alt="Coding" />
               </a>
               <div class="card-body">
                 <h5 class="card-title"><?php echo $row['subject'] ?></h5>
-                <p class="card-text">
-                <?php echo $row['sub_title'] ?>
-                </p>
+                <p class="card-text"> <?php echo $row['sub_title'] ?></p>
               </div>
               <div class="p-3">
                 <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
               </div>
             </div>
         </section>
+      <?php } 
+      }
+      else{
+      ?>
+        <section class="col-12">
+        <h3 class="text-center py-5">ไม่มีข้อมูล</h3>
+        </section>
       <?php } ?>
+      
 
       </div>
     </section>
+
+    
 
     <!-- Section Footer -->
     <?php include_once('includes/footer.php'); ?>
