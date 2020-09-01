@@ -55,7 +55,7 @@
     </header>
 
     <!-- Section Blog -->
-    <div class="container blog-contemt">
+    <div class="container blog-content">
     
         <div class="row">
             <div class="col-12">
