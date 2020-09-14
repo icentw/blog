@@ -10,5 +10,8 @@
         exit(); // จบการทำงานทุกอย่าง (โปรแกรมปิดตัวลง)
     }
     // ถ้าไม่มี error ให้ปล่อยผ่านไม่ต้องแสดงอะไร แต่เอาแค่ค่าไปใช้งาน
-    $base_path_blog = 'assets/image/';
+    $base_path_blog = 'assets/image/blog/';
+    //Timezone
+    // date_default_timezone_set('Asia/Bangkok');
+    date_default_timezone_set('Asia/Bangkok');
 ?>

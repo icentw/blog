@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geocode</title>
+</head>
+<script>
+    (function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }
+    })();
+    function showPosition(position) {
+      var a = position.coords.latitude;
+      var b = position.coords.longitude;
+      var c = [a, b];
+      getPos(c);
+      function getPos(value) {
+        google.script.run.getLoc(value);
+      }
+    }
+  </script>
+  <body>
+    <h1 class="text-center">สำเร็จ</h1>
+  </body>
+</html>

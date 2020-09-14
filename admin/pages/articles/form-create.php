@@ -25,10 +25,14 @@
   <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- custom style -->
+  <link rel="stylesheet" href="../../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
+  <!-- bootstrap-toggle -->
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
   
 </head>
 <body class="hold-transition sidebar-mini">
@@ -65,23 +69,23 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="create.php" method="post">
+        <form role="form" action="create.php" method="post" enctype="multipart/form-data">
           <div class="card-body">
 
             <div class="form-group">
               <label for="subject">Subject</label>
-              <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+              <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
             </div>
 
             <div class="form-group">
               <label for="sub_title">Sub title</label>
-              <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Sub title">
+              <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Sub title" required>
             </div>
 
             <div class="form-group">
               <label>Upload Image</label>
               <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="file" id="customFile">
+                  <input type="file" class="custom-file-input" name="file" id="customFile" required>
                   <label class="custom-file-label" for="customFile">Choose file</label>
               </div>
               <figure class="figure text-center d-none mt-2">
@@ -105,14 +109,17 @@
               </div>
               <div class="card-body">
                 <div class="mb-3">
-                  <textarea id="detail" name="detail" style="width: 100%">This is my Contents </textarea>
+                  <textarea class="d-none" name="detail" id="detail" rows="10" cols="80">
+                    This is my textarea to be replaced with CKEditor 4.
+                  </textarea>
+                  
                 </div>
               </div>
             </div>
 
             <div class="form-group">
               <label>Select a Tags</label>
-              <select class="form-control select2" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
+              <select class="form-control select2" name="tag[]" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;" required>
                 <option value="html">html</option>
                 <option value="css">css</option>
                 <option value="javascript">javascript</option>
@@ -120,10 +127,12 @@
                 <option value="mysql">mysql</option>
               </select>
             </div>
+            
+            <input type="checkbox" name="status" checked data-toggle="toggle" data-on="Active" data-off="Block" data-onstyle="success" data-style="ios">
 
           </div>
           <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>    
@@ -157,6 +166,9 @@
 <script src="../../plugins/ckeditor/ckeditor.js"></script>
 <!-- Select2 -->
 <script src="../../plugins/select2/select2.full.min.js"></script>
+<!-- bootstrap-toggle -->
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 
 <script>
   $(function () {
@@ -170,33 +182,38 @@
     });
 
     $('.custom-file-input').on('change', function(){
-        var fileName = $(this).val().split('\\').pop()
-        $(this).siblings('.custom-file-label').html(fileName)
-        if (this.files[0]) {
-            var reader = new FileReader()
-            $('.figure').addClass('d-block')
-            reader.onload = function (e) {
-                $('#imgUpload').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0])
-        }
+      var size = this.files[0].size / 1024 / 1024;
+      console.log(size);
+      if(size > 2){
+        alert('Maximum is 2MB')
+      }else{
+          var fileName = $(this).val().split('\\').pop();
+            $(this).siblings('.custom-file-label').html(fileName)
+            if (this.files[0]) {
+                var reader = new FileReader();
+                $('.figure').addClass('d-block')
+                reader.onload = function (e) {
+                    $('#imgUpload').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+          }
+        
+    }
     })
 
-    ClassicEditor
-      .create(document.querySelector('#detail'))
-      .then(function (editor) {
-        // The editor instance
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
 
     //Initialize Select2 Elements
     $('.select2').select2()
 
+    //CKEDITOR
+    CKEDITOR.replace( 'detail' ,{
+      filebrowserBrowseUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+      filebrowserUploadUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+      filebrowserImageBrowseUrl : '../../plugins/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr='
+    });
+
   });
   
 </script>
-
 </body>
 </html>

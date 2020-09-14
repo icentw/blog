@@ -1,4 +1,8 @@
-<?php include_once('../authen.php') ?>
+<?php 
+  include_once('../authen.php');
+  $sql = "SELECT * FROM contacts ORDER BY id DESC";
+  $result = $conn->query($sql);
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,14 +79,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php for ($i=1; $i < 50 ; $i++) { ?>
+                <?php 
+                $num = 0;
+                while($row = $result->fetch_assoc() )
+                { 
+                $num++;?>
                 <tr>
-                    <td><?php echo $i; ?></td>
-                    <td>Lorem, ipsum.</td>
-                    <td>088-888-8888</td>
-                    <td>Test@test</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ad maxime quas esse ipsa exercitationem praesentium hic numquam dignissimos quia?</td>
-                    <td>1/12/2018</td>
+                    <td><?php echo $num ?></td>
+                    <td><?php echo $row['name'] ?></td>
+                    <td><?php echo $row['phone'] ?></td>
+                    <td><?php echo $row['email'] ?></td>
+                    <td><?php echo $row['detail'] ?></td>
+                    <td><?php echo $row['created_at'] ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>

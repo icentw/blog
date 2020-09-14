@@ -21,9 +21,7 @@ $(window).scroll(function(){
 });
 //Click event to scroll to top
 $('.to-top').click(function (){
-    $('html,body').animate({scrollTop: '0px'} ,300)
-
-    
+    $('html').animate({scrollTop: '0px'} ,300)
 })
 
 

@@ -1,4 +1,11 @@
-<?php include_once('../authen.php') ?>
+<?php 
+  include_once('../authen.php');
+  $sql = "SELECT * FROM articles";
+  $result = $conn->query($sql);
+
+  $sql = " UPDATE `articles` SET `status` = 'false' WHERE `articles`.`id` = 3; ";
+  // print_r($result);
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +30,14 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <!-- custom style -->
+    <link rel="stylesheet" href="../../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
+  <!-- ootstrap-toggle -->
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -71,26 +82,35 @@
               <th>Image</th>
               <th>Subject</th>
               <th>Subtitle</th>
-              <th>Created</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Update</th>
+              <th>Adtion</th>
+              <th>Adtion</th>
             </tr>
             </thead>
             <tbody>
-            <?php for($id=1; $id <= 5; $id++) { ?>
+            <?php 
+              $num = 0;
+              
+              while($row = $result->fetch_assoc() ){
+                $num++;
+              
+            ?>
               <tr>
-                <td><?php echo $id; ?></td>
-                <td><img class="img-fluid d-block mx-auto" src="https://images.unsplash.com/photo-1531026383433-6ed5a112afbc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c010c700aac502636ad0b579ce1274a4&auto=format&fit=crop&w=1350&q=80" width="150px" alt=""></td>
-                <td>Subject<?php echo $id; ?></td>
-                <td>Subtitle<?php echo $id; ?></td>
-                <td>1/12/2018</td>
+                <td><?php echo $num; ?></td>
+                <td><img class="img-fluid d-block mx-auto" src="../../../assets/image/blog/<?= $row['image'] ?>" width="150px" alt=""></td>
+                <td><?php echo $row['subject'] ?></td>
+                <td><?php echo $row['sub_title'] ?></td>
+                <td><?php echo date_format(new DateTime($row['update_at']), "j F Y | H:i"); ?></td>
                 <td>
-                  <a href="form-edit.php?id=<?php echo $id; ?>" class="btn btn-sm btn-warning text-white">
-                    <i class="fas fa-edit"></i> edit
-                  </a> 
+                  <input type="checkbox" data-id= "<?= $row['id'] ?>" name="status" <?= $row['status'] == 'true' ? 'checked' : '' ?> 
+                  data-toggle="toggle" data-on="Active" data-off="Block" data-onstyle="success" data-style="ios" disabled>
                 </td>
+                  
                 <td>
-                  <a href="#" onclick="deleteItem(<?php echo $id; ?>);" class="btn btn-sm btn-danger">
+                    <a href="form-edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning text-white">
+                      <i class="fas fa-edit"></i> edit
+                    </a> 
+                  <a href="#" onclick="deleteItem(<?php echo $row['id']; ?>);" class="btn btn-sm btn-danger">
                     <i class="fas fa-trash-alt"></i> Delete
                   </a>
                 </td>
@@ -129,7 +149,8 @@
 <!-- DataTables -->
 <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-
+<!-- bootstrap-toggle -->
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script>
   $(function () {
     $('#dataTable').DataTable({
