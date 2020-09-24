@@ -1,5 +1,4 @@
 <?php $file_name = basename($_SERVER['SCRIPT_FILENAME'],".php"); ?>
-
 <section data-speed="0.5"
   
   class="position-relative py-5 jarallax"
